@@ -39,3 +39,8 @@ void Obstacle::RestartPosition() {
 		x = static_cast<float>(GetScreenWidth());
 	}
 }
+
+void Obstacle::RestartObstacle() {
+	x = static_cast<float>(GetScreenWidth());
+	y = static_cast<float>(GetScreenHeight() - 100);
+}

@@ -22,4 +22,5 @@ public:
 	float GetWidht();
 	float GetHeight();
 	void RestartPosition();
+	void RestartObstacle();
 };

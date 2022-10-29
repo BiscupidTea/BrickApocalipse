@@ -18,7 +18,8 @@ public:
 	Player(float x, float y, float velocity, float width, float height);
 	void DrawPlayer();
 	void MovePlayer();
-	void CheckColision();
+	bool CheckColision();
+	void RestartPlayer();
 };
 
 

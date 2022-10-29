@@ -9,7 +9,7 @@ Player::Player(float x, float y, float velocity, float width, float height){
 	this->width = width;
 	this->height = height;
 
-	object = new Obstacle(800, 450 - 100, 200, 50, 50);
+	object = new Obstacle(static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight() - 100), 200, 50, 50);
 }
 
 void Player::DrawPlayer() {
@@ -32,13 +32,20 @@ void Player::MovePlayer() {
 	object->RestartPosition();
 }
 
-void Player::CheckColision() {
+bool Player::CheckColision() {
 	if (CheckCollisionRecs(colision, Rectangle{ object->GetX(), object->GetY(), object->GetWidht(), object->GetHeight() }))
 	{
-		DrawText("Colision Detectada!", 10, 10, 30, RED);
+		return true;
 	}
 	else
 	{
-		DrawText("Colision NO Detectada!", 10, 10, 30, BLUE);
+		return false;
 	}
+}
+
+void Player::RestartPlayer() {
+	x = 10;
+	y = static_cast<float>(GetScreenHeight() - 100);
+
+	object->RestartObstacle();
 }
