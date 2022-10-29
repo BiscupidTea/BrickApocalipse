@@ -7,9 +7,12 @@ private:
 	float y;
 
 	float velocity;
+	float speedJump;
 	float width;
 	float height;
-
+	
+	bool jump;
+	int jumpTimer;
 	Rectangle colision;
 
 	Obstacle* object;

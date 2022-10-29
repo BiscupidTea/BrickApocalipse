@@ -4,6 +4,7 @@
 enum GameScene {
 	Menu,
 	Gameplay,
+	Credits,
 }static gamescene;
 
 void ScreenScene();
@@ -15,6 +16,8 @@ void Draw();
 void Update();
 void RestartGameplay();
 void VersionGame();
+void CreditsScene();
+void DrawCredits();
 
 
 
