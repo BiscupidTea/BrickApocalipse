@@ -28,6 +28,11 @@ void Player::MovePlayer() {
 	{
 		x += velocity * GetFrameTime();
 	}
+
+	if (IsKeyDown(KEY_SPACE))
+	{
+		y -= velocity * GetFrameTime();
+	}
 	object->MoveObstacle();
 	object->RestartPosition();
 }
