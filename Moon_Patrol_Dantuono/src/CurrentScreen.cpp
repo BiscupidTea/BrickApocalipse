@@ -9,11 +9,7 @@ void ScreenScene() {
 		break;
 	case Gameplay:
 		SetExitKey(NULL);
-		GameplayScene();
-		if (IsKeyPressed(KEY_ESCAPE))
-		{
-			gamescene = GameScene::Menu;
-		}
+		GameplayScene();		
 		break;
 	case Credits:
 		SetExitKey(NULL);
@@ -25,6 +21,18 @@ void ScreenScene() {
 }
 void MenuScene() {
 	DrawMenu();
+}
+
+void CreditsScene() {
+	DrawCredits();
+}
+
+void GameplayScene() {
+	DrawGameplay();
+	if (IsKeyPressed(KEY_ESCAPE))
+	{
+		gamescene = GameScene::Menu;
+	}
 }
 
 void DrawMenu() {
@@ -51,9 +59,6 @@ void CheckDefeat(bool isDefeat) {
 	}
 }
 
-void CreditsScene() {
-	DrawCredits();
-}
 
 void DrawCredits() {
 	DrawText("Moon Patrol Credits", GetScreenWidth() / 2 - 250, GetScreenHeight() / 2 - 200, 50, WHITE);

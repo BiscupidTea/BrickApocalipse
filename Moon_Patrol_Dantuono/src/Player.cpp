@@ -10,8 +10,6 @@ Player::Player(float x, float y, float velocity, float width, float height){
 	this->width = width;
 	this->height = height;
 
-	speedJump = velocity * 2;
-
 	object = new Obstacle(static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight() - 100), 200, 50, 50);
 }
 

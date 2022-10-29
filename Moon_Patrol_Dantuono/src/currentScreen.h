@@ -9,6 +9,7 @@ enum GameScene {
 
 void ScreenScene();
 void GameplayScene();
+void DrawGameplay();
 void MenuScene();
 void DrawMenu();
 void CheckDefeat(bool isDefeat);

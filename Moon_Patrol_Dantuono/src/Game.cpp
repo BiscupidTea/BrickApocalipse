@@ -2,6 +2,7 @@
 #include "player.h"
 #include "obstacle.h"
 #include "currentScreen.h"
+#include "assets.h"
 
 #include "raylib.h"
 
@@ -14,16 +15,20 @@ Player* player = new Player(10, screenHeight - 100, 300, 50, 50);
 
 void RunGame() {
     InitWindow(screenWidth, screenHeight, "Moon Patrol By Manuel Dantuono");
-    
+    LoadResources();
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(BLACK);   
+        ClearBackground(BLACK); 
+        
+
         ScreenScene();
         EndDrawing();
+
+       
     }
     delete player;
-
+    UnloadResources();
     CloseWindow();
 }
 
@@ -34,13 +39,14 @@ void Draw() {
 void Update() {
     player->MovePlayer();  
     CheckDefeat(player->CheckColision());
+    DrawFloorParallax();
 }
 
 void VersionGame() {
     DrawText("Version: 0.2", GetScreenWidth() - 150, GetScreenHeight() - 25, 25, WHITE);
 }
 
-void GameplayScene() {
+void DrawGameplay() {
     Draw();
     Update();
     VersionGame();

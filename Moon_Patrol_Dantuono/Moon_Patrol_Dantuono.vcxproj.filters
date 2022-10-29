@@ -30,7 +30,7 @@
     <ClCompile Include="src\CurrentScreen.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Menu.cpp">
+    <ClCompile Include="src\Assets.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="src\currentScreen.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\menu.h">
+    <ClInclude Include="src\assets.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
