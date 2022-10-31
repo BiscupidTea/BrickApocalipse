@@ -39,7 +39,7 @@ void Draw() {
 void Update() {
     player->MovePlayer();  
     CheckDefeat(player->CheckColision());
-    DrawFloorParallax();
+    DrawBackgroundGame();
 }
 
 void VersionGame() {
@@ -47,11 +47,15 @@ void VersionGame() {
 }
 
 void DrawGameplay() {
-    Draw();
     Update();
+    Draw();
     VersionGame();
 }
 
 void RestartGameplay() {
     player->RestartPlayer();
+}
+
+float GetMovementPlayer() {
+    return player->GetX();
 }

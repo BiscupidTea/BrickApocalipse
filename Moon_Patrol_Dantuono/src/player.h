@@ -22,6 +22,7 @@ public:
 	void MovePlayer();
 	bool CheckColision();
 	void RestartPlayer();
+	float GetX();
 };
 
 

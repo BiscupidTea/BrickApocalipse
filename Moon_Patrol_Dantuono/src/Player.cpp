@@ -83,3 +83,7 @@ void Player::RestartPlayer() {
 
 	object->RestartObstacle();
 }
+
+float Player::GetX() {
+	return x / velocity * 2;
+}
