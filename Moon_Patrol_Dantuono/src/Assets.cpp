@@ -38,8 +38,8 @@ void DrawMountainParallax() {
 	scrollbackMountain -= 1.5f + (GetMovementPlayer() / 4);
 
 	if (scrollbackMountain <= -mountain.width * 2) scrollbackMountain = 0;
-	DrawTextureEx(mountain, { scrollbackMountain, static_cast<float>(200) }, 0, 2, WHITE);
-	DrawTextureEx(mountain, { mountain.width * 2 + scrollbackMountain, static_cast<float>(200) }, 0, 2, WHITE);
+	DrawTextureEx(mountain, { scrollbackMountain, 200 }, 0, 2, WHITE);
+	DrawTextureEx(mountain, { mountain.width * 2 + scrollbackMountain, 200 }, 0, 2, WHITE);
 	
 }
 
@@ -47,7 +47,7 @@ void DrawBackgroundParallax() {
 	scrollbackground -= 0.5f + (GetMovementPlayer() / 4);
 
 	if (scrollbackground <= -background.width * 2) scrollbackground = 0;
-	DrawTextureEx(background, { scrollbackground, static_cast<float>(0) }, 0, 2, WHITE);
-	DrawTextureEx(background, { background.width * 2 + scrollbackground, static_cast<float>(0) }, 0, 2, WHITE);
+	DrawTextureEx(background, { scrollbackground, 0 }, 0, 2, WHITE);
+	DrawTextureEx(background, { background.width * 2 + scrollbackground, 0 }, 0, 2, WHITE);
 }
 
