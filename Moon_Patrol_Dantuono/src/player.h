@@ -11,7 +11,6 @@ private:
 	float height;
 	
 	bool jump;
-	int jumpTimer;
 	Rectangle colision;
 
 	Obstacle* object;
@@ -25,6 +24,7 @@ public:
 	float GetX();
 };
 
+static int jumpTimer = 0;
 
 	
 

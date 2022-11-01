@@ -20,7 +20,7 @@ void Player::DrawPlayer() {
 }
 
 void Player::MovePlayer() {
-
+	
 	if (IsKeyDown(KEY_A))
 	{
 		x -= velocity * GetFrameTime();
@@ -38,19 +38,19 @@ void Player::MovePlayer() {
 
 	if (jump)
 	{
-		jumpTimer++;
+		jumpTimer += static_cast<int>(1 + 1 * GetFrameTime());
 
-		if (jumpTimer < 40)
+		if (jumpTimer < 20)
 		{
 			y -= (velocity * 1.5f) * GetFrameTime();
 		}
 		else
 		{
-			y += (velocity * (jumpTimer / 32)) * GetFrameTime();
+			y += (velocity * (jumpTimer / 16)) * GetFrameTime();
 		}
 	}
 
-	if (jumpTimer >= 85)
+	if (jumpTimer >= 45)
 	{
 		jumpTimer = 0;
 		jump = false;

@@ -16,6 +16,7 @@ Player* player = new Player(10, screenHeight - 100, 300, 50, 50);
 void RunGame() {
     InitWindow(screenWidth, screenHeight, "Moon Patrol By Manuel Dantuono");
     LoadResources();
+    SetTargetFPS(60);
     while (!WindowShouldClose())
     {
         BeginDrawing();
@@ -36,10 +37,10 @@ void Draw() {
     player->DrawPlayer();
 }
 
-void Update() {
-    player->MovePlayer();  
+void Update() {   
     CheckDefeat(player->CheckColision());
     DrawBackgroundGame();
+    player->MovePlayer();
 }
 
 void VersionGame() {
@@ -57,5 +58,5 @@ void RestartGameplay() {
 }
 
 float GetMovementPlayer() {
-    return player->GetX();
+    return player->GetX() * GetFrameTime();
 }
