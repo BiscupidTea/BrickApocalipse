@@ -50,3 +50,4 @@ void DrawBackgroundParallax() {
 	DrawTextureEx(background, { scrollbackground, static_cast<float>(0) }, 0, 2, WHITE);
 	DrawTextureEx(background, { background.width * 2 + scrollbackground, static_cast<float>(0) }, 0, 2, WHITE);
 }
+
