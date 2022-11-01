@@ -6,11 +6,11 @@
 
 #include "raylib.h"
 
-const int screenWidth = 800;
-const int screenHeight = 450;
+int screenWidth = 1024;
+int screenHeight = 768;
 
 
-Player* player = new Player(10, screenHeight - 100, 300, 50, 50);
+Player* player = new Player(10, static_cast<float>(screenHeight - 100), 300, 50, 50);
 
 
 void RunGame() {

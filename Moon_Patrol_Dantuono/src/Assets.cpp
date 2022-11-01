@@ -6,7 +6,7 @@ void LoadResources() {
 	background = LoadTexture("rsc/backgroundParallax.png");
 
 	floor.width = GetScreenWidth();
-	floor.height = 40;
+	floor.height = GetScreenWidth() / 8;
 	mountain.width = GetScreenWidth();
 	mountain.height = GetScreenHeight();
 	background.width = GetScreenWidth();
