@@ -16,6 +16,7 @@ private:
 
 	Shoot* shoot;
 	Obstacle* object;
+	Obstacle* flyObject;
 
 public:
 	Player(float x, float y, float velocity, float width, float height);

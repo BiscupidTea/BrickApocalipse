@@ -11,6 +11,7 @@ Player::Player(float x, float y, float velocity, float width, float height){
 	this->height = height;
 
 	object = new Obstacle(static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight() - 100), 200, 50, 50);
+	flyObject = new Obstacle(100, static_cast<float>(GetScreenHeight() + 200), 200, 50, 50);
 	shoot = new Shoot({ 0,0 }, 400, 10);
 	
 }
@@ -19,6 +20,7 @@ void Player::DrawPlayer() {
 	colision = { x, y, width, height };	
 	DrawRectangleRec(colision, RED);
 	object->DrawObstacle();
+	flyObject->DrawObstacle();
 	
 }
 
@@ -72,6 +74,8 @@ void Player::MovePlayer() {
 	
 	object->MoveObstacle();
 	object->RestartPosition();
+	flyObject->MoveFlyObstacle();
+	flyObject->RestartFlyPosition();
 }
 
 bool Player::CheckColision() {

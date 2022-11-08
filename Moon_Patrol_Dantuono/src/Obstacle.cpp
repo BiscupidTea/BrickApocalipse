@@ -1,4 +1,5 @@
 #include "obstacle.h"
+#include "raymath.h"
 
 Obstacle::Obstacle(float x, float y, float velocity, float width, float height) {
 	this->x = x;
@@ -15,6 +16,29 @@ void Obstacle::DrawObstacle() {
 
 void Obstacle::MoveObstacle() {
 	x -= velocity * GetFrameTime();
+}
+
+void Obstacle::MoveFlyObstacle() {
+	int waveMovement = 40;
+	int maxMovement = 80;
+
+	x += velocity * GetFrameTime();
+
+	timer++;
+	
+	if (timer < waveMovement)
+	{
+		y -= (velocity / 2) * GetFrameTime();
+	}
+	else
+	{
+		y += (velocity / 2) * GetFrameTime();
+		if (timer > maxMovement)
+		{
+			timer = 0;
+		}
+	}
+
 }
 
 float Obstacle::GetX() {
@@ -37,6 +61,13 @@ void Obstacle::RestartPosition() {
 	if (x < 0 - width)
 	{
 		x = static_cast<float>(GetScreenWidth());
+	}
+}
+
+void Obstacle::RestartFlyPosition() {
+	if (x > GetScreenWidth() + width)
+	{
+		x = 0 - width;
 	}
 }
 
