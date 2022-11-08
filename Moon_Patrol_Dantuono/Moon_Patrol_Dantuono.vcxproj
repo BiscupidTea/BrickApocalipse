@@ -25,6 +25,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\obstacle.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\shoot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\assets.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\obstacle.h" />
     <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\shoot.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

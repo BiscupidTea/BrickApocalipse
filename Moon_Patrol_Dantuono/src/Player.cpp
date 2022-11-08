@@ -11,16 +11,24 @@ Player::Player(float x, float y, float velocity, float width, float height){
 	this->height = height;
 
 	object = new Obstacle(static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight() - 100), 200, 50, 50);
+	shoot = new Shoot({ 0,0 }, 400, 10);
+	
 }
 
 void Player::DrawPlayer() {
-	colision = { x, y, width, height };
+	colision = { x, y, width, height };	
 	DrawRectangleRec(colision, RED);
 	object->DrawObstacle();
+	
 }
 
 void Player::MovePlayer() {
-	
+	shoot->LogicShoot();
+	if (!shoot->isActive())
+	{
+		shoot->GetPosition(GetX() + width / 2, GetY());
+	}
+
 	if (IsKeyDown(KEY_A))
 	{
 		x -= velocity * GetFrameTime();
@@ -38,7 +46,7 @@ void Player::MovePlayer() {
 
 	if (jump)
 	{
-		jumpTimer += static_cast<int>(1 + 1 * GetFrameTime());
+		jumpTimer++;
 
 		if (jumpTimer < 20)
 		{
@@ -84,6 +92,14 @@ void Player::RestartPlayer() {
 	object->RestartObstacle();
 }
 
-float Player::GetX() {
+float Player::GetXVelocity() {
 	return x / velocity * 2;
+}
+
+float Player::GetX() {
+	return x;
+}
+
+float Player::GetY() {
+	return y;
 }

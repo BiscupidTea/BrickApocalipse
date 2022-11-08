@@ -13,6 +13,7 @@ int screenHeight = 768;
 Player* player = new Player(10, static_cast<float>(screenHeight - 100), 300, 50, 50);
 
 
+
 void RunGame() {
     InitWindow(screenWidth, screenHeight, "Moon Patrol By Manuel Dantuono");
     LoadResources();
@@ -35,6 +36,7 @@ void RunGame() {
 
 void Draw() {
     player->DrawPlayer();
+    
 }
 
 void Update() {   

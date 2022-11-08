@@ -1,5 +1,6 @@
 #pragma once
 #include "obstacle.h"
+#include "shoot.h"
 
 class Player {
 private:
@@ -13,6 +14,7 @@ private:
 	bool jump;
 	Rectangle colision;
 
+	Shoot* shoot;
 	Obstacle* object;
 
 public:
@@ -21,7 +23,9 @@ public:
 	void MovePlayer();
 	bool CheckColision();
 	void RestartPlayer();
+	float GetXVelocity();
 	float GetX();
+	float GetY();
 };
 
 static int jumpTimer = 0;
