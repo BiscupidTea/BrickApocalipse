@@ -1,4 +1,6 @@
 #include "obstacle.h"
+#include "score.h"
+
 #include "raymath.h"
 
 Obstacle::Obstacle(float x, float y, float velocity, float width, float height) {
@@ -45,7 +47,12 @@ void Obstacle::MoveFlyObstacle() {
 	}
 	else
 	{
-		x = 0 - width;
+		x = 0 - width; 
+		y = static_cast<float>(GetScreenHeight() / 4);
+		if (GetRandomValue(1,100) == 50)
+		{
+			active = true;
+		}
 	}
 	
 }
@@ -54,9 +61,31 @@ bool Obstacle::CheckColisionShoot(Vector2 center, float radius) {
 	if (CheckCollisionCircleRec(center, radius, colision))
 	{
 		active = false;
+		AddScore(3);
 		return true;
+		
 	}
 	return false;
+}
+
+void Obstacle::CheckJumpPlayer(float X, float Y) {
+	
+	Rectangle colisionObstacle = { x, y - 200, 10, 200 };
+	Rectangle colisionPlayer = { X, Y, 2, height  * 2 };
+
+	if (CheckCollisionRecs(colisionPlayer, colisionObstacle))
+	{
+		checkcolision++;
+		if (checkcolision == 1)
+		{
+			AddScore(1);
+		}
+		
+	}
+	else
+	{
+		checkcolision = 0;
+	}
 }
 
 float Obstacle::GetX() {

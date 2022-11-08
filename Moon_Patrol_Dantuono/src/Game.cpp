@@ -3,6 +3,7 @@
 #include "obstacle.h"
 #include "currentScreen.h"
 #include "assets.h"
+#include "score.h"
 
 #include "raylib.h"
 
@@ -46,12 +47,13 @@ void Update() {
 }
 
 void VersionGame() {
-    DrawText("Version: 0.2", GetScreenWidth() - 150, GetScreenHeight() - 25, 25, WHITE);
+    DrawText("Version: 0.3", GetScreenWidth() - 150, GetScreenHeight() - 25, 25, WHITE);
 }
 
 void DrawGameplay() {
     Update();
     Draw();
+    DrawScore();
     VersionGame();
 }
 

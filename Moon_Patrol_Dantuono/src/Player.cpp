@@ -79,8 +79,10 @@ void Player::MovePlayer() {
 
 	object->MoveObstacle();
 	object->RestartPosition();
+	object->CheckJumpPlayer(GetX(), GetY());
 	flyObject->MoveFlyObstacle();
 	flyObject->RestartFlyPosition();
+	
 }
 
 bool Player::CheckColision() {

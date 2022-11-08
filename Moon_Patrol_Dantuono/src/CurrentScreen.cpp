@@ -1,4 +1,5 @@
 #include "currentScreen.h"
+#include "score.h"
 
 void ScreenScene() {
 	switch (gamescene)
@@ -39,6 +40,8 @@ void DrawMenu() {
 	DrawText("Moon Patrol Menu", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2 - 50, 50, WHITE);
 	DrawText("(Espacio) para empezar", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2, 20, WHITE);
 	DrawText("(Enter) para los creditos", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 50, 20, WHITE);
+	DrawMaxScore();
+	RestartScore();
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		gamescene = GameScene::Gameplay;
