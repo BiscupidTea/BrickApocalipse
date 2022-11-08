@@ -7,6 +7,8 @@ Obstacle::Obstacle(float x, float y, float velocity, float width, float height) 
 	this->velocity = velocity;
 	this->width = width;
 	this->height = height;
+
+	active = true;
 }
 
 void Obstacle::DrawObstacle() {
@@ -22,23 +24,39 @@ void Obstacle::MoveFlyObstacle() {
 	int waveMovement = 40;
 	int maxMovement = 80;
 
-	x += velocity * GetFrameTime();
-
-	timer++;
-	
-	if (timer < waveMovement)
+	if (active)
 	{
-		y -= (velocity / 2) * GetFrameTime();
+		x += velocity * GetFrameTime();
+
+		timer++;
+
+		if (timer < waveMovement)
+		{
+			y -= (velocity / 2) * GetFrameTime();
+		}
+		else
+		{
+			y += (velocity / 2) * GetFrameTime();
+			if (timer > maxMovement)
+			{
+				timer = 0;
+			}
+		}
 	}
 	else
 	{
-		y += (velocity / 2) * GetFrameTime();
-		if (timer > maxMovement)
-		{
-			timer = 0;
-		}
+		x = 0 - width;
 	}
+	
+}
 
+bool Obstacle::CheckColisionShoot(Vector2 center, float radius) {
+	if (CheckCollisionCircleRec(center, radius, colision))
+	{
+		active = false;
+		return true;
+	}
+	return false;
 }
 
 float Obstacle::GetX() {

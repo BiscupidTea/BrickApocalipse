@@ -26,7 +26,7 @@ void Player::DrawPlayer() {
 
 void Player::MovePlayer() {
 	shoot->LogicShoot();
-	if (!shoot->isActive())
+	if (!shoot->IsActive())
 	{
 		shoot->GetPosition(GetX() + width / 2, GetY());
 	}
@@ -72,6 +72,11 @@ void Player::MovePlayer() {
 		y = static_cast<float>(GetScreenHeight() - 100);
 	}
 	
+	if (flyObject->CheckColisionShoot({shoot->GetX(), shoot->GetY()}, shoot->GetRadius()))
+	{
+		shoot->ActiveFalse();
+	}
+
 	object->MoveObstacle();
 	object->RestartPosition();
 	flyObject->MoveFlyObstacle();

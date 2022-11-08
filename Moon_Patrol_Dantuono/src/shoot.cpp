@@ -33,7 +33,7 @@ void Shoot::GetPosition(float x, float y) {
 	position.y = y;
 }
 
-bool Shoot::isActive() {
+bool Shoot::IsActive() {
 	if (active)
 	{
 		return true;
@@ -42,4 +42,20 @@ bool Shoot::isActive() {
 	{
 		return false;
 	}
+}
+
+float Shoot::GetX() {
+	return position.x;
+}
+
+float Shoot::GetY() {
+	return position.y;
+}
+
+float Shoot::GetRadius() {
+	return radius;
+}
+
+void Shoot::ActiveFalse() {
+	active = false;
 }

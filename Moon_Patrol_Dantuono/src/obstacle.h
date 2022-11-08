@@ -12,6 +12,7 @@ private:
 	float height;
 
 	int timer = 0;
+	bool active;
 	Rectangle colision;
 
 public:
@@ -19,6 +20,7 @@ public:
 	void DrawObstacle();
 	void MoveObstacle();
 	void MoveFlyObstacle();
+	bool CheckColisionShoot(Vector2 center, float radius);
 	float GetX();
 	float GetY();
 	float GetWidht();
