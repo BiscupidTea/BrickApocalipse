@@ -1,10 +1,14 @@
-# MoonPatrol 0.2
-### Juego remake hecho por Manuel D`Antuono basado en el juego original Moon Patrol de Irem en 1982.
+# MoonPatrol 0.3
+## Juego remake hecho por Manuel D`Antuono basado en el juego original Moon Patrol de Irem en 1982.
 
 
-### Version 0.2 Lanzada!!. Trae como nuevo unos fondos de pantalla Parallax y gravedad en el salto!!
+### Version 0.3 Lanzada!!. Ahora puedes disparar!
 
-![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/rsc/backgroundParallax.png)
+
+### Nuevo enemigo aereo y sistema de puntaje al esquivar y disparar al enemigo.
+
+![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/screenshots/vs0.3img1.png)
+![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/screenshots/vs0.3img2.png)
 
 ## Autor
 
