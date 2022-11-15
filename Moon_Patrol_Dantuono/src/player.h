@@ -1,4 +1,5 @@
 #pragma once
+#include "timer.h"
 #include "obstacle.h"
 #include "shoot.h"
 
@@ -14,9 +15,12 @@ private:
 	bool jump;
 	Rectangle colision;
 
-	Shoot* shoot;
+	Shoot* shoot[3];
 	Obstacle* object;
 	Obstacle* flyObject;
+
+	Timer jumpTime;
+	Timer jumpDown;
 
 public:
 	Player(float x, float y, float velocity, float width, float height);

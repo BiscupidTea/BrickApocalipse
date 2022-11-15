@@ -25,6 +25,10 @@ void Player::DrawPlayer() {
 }
 
 void Player::MovePlayer() {
+	float timeJump = 0.5f;
+	float timeDown = 0.6f;
+	float speedJump = 1.5f;
+
 	shoot->LogicShoot();
 	if (!shoot->IsActive())
 	{
@@ -42,29 +46,37 @@ void Player::MovePlayer() {
 	}
 
 	if (IsKeyPressed(KEY_SPACE))
-	{	
+	{			
+		if (!jump)
+		{
+			StartTimer(&jumpTime, timeJump);
+		}
 		jump = true;
+		
 	}
+	UpdateTimer(&jumpTime);
+	UpdateTimer(&jumpDown);
 
 	if (jump)
 	{
-		jumpTimer++;
-
-		if (jumpTimer < 20)
+		if (!TimerDone(&jumpTime))
 		{
-			y -= (velocity * 1.5f) * GetFrameTime();
+			y -= (velocity * speedJump) * GetFrameTime();
 		}
-		else
+
+		if (TimerDone(&jumpTime))
 		{
-			y += (velocity * (jumpTimer / 16)) * GetFrameTime();
+			StartTimer(&jumpDown, timeDown);
+		}
+		
+		if (!TimerDone(&jumpDown))
+		{
+			jump = false;
 		}
 	}
-
-	if (jumpTimer >= 45)
+	if (!TimerDone(&jumpDown))
 	{
-		jumpTimer = 0;
-		jump = false;
-
+		y += (velocity * speedJump) * GetFrameTime();
 	}
 	
 	if (y > static_cast<float>(GetScreenHeight() - 100))

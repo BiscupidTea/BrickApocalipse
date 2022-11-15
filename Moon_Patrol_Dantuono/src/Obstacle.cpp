@@ -11,6 +11,7 @@ Obstacle::Obstacle(float x, float y, float velocity, float width, float height) 
 	this->height = height;
 
 	active = true;
+	StartTimer(&moveUp, 0.4f);
 }
 
 void Obstacle::DrawObstacle() {
@@ -23,33 +24,41 @@ void Obstacle::MoveObstacle() {
 }
 
 void Obstacle::MoveFlyObstacle() {
-	int waveMovement = 40;
-	int maxMovement = 80;
+	float timeUp = 2;
+	float timeDown = 0.1f;
+	float speedMovement = 2;
 
+	UpdateTimer(&moveUp);
+	UpdateTimer(&moveDown);
 	if (active)
 	{
 		x += velocity * GetFrameTime();
 
-		timer++;
-
-		if (timer < waveMovement)
+		if (!TimerDone(&moveUp))
 		{
-			y -= (velocity / 2) * GetFrameTime();
+			y -= (velocity / speedMovement) * GetFrameTime();
 		}
-		else
+
+		if (TimerDone(&moveUp))
 		{
-			y += (velocity / 2) * GetFrameTime();
-			if (timer > maxMovement)
-			{
-				timer = 0;
-			}
+			StartTimer(&moveDown, timeDown);
+		}
+
+		if (!TimerDone(&moveDown))
+		{
+			y += (velocity / speedMovement) * GetFrameTime();
+		}
+
+		if (y > GetScreenHeight() / 2 - 120)
+		{
+			StartTimer(&moveUp, timeUp);
 		}
 	}
 	else
 	{
 		x = 0 - width; 
 		y = static_cast<float>(GetScreenHeight() / 4);
-		if (GetRandomValue(1,100) == 50)
+		if (GetRandomValue(1,300) == 50)
 		{
 			active = true;
 		}

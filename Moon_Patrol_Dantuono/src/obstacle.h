@@ -1,4 +1,5 @@
 #pragma once
+#include "timer.h"
 
 #include "raylib.h"
 
@@ -11,10 +12,12 @@ private:
 	float width;
 	float height;
 
-	int timer = 0;
 	int checkcolision = 0;
 	bool active;
 	Rectangle colision;
+
+	Timer moveUp;
+	Timer moveDown;
 
 public:
 	Obstacle(float x, float y, float velocity, float width, float height);
