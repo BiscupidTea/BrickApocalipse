@@ -19,7 +19,3 @@ void RestartGameplay();
 void VersionGame();
 void CreditsScene();
 void DrawCredits();
-
-
-
-

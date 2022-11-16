@@ -3,88 +3,76 @@
 #include "raylib.h"
 #include "raymath.h"
 
-Player::Player(float x, float y, float velocity, float width, float height){
+#include <iostream>
+using namespace std;
+
+Player::Player(float x, float y, float velocityX, float velocityY, float gravity, float width, float height) {
 	this->x = x;
 	this->y = y;
-	this->velocity = velocity;
+	this->velocity.x = velocityX;
+	this->floorY = y;
+	this->velocity.y = velocityY;
+	this->AlternVelocity = velocityY;
+	this->gravity = gravity;
 	this->width = width;
 	this->height = height;
 
+	jump = false;
+
 	object = new Obstacle(static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight() - 100), 200, 50, 50);
 	flyObject = new Obstacle(100, static_cast<float>(GetScreenHeight() + 200), 200, 50, 50);
+
+
 	shoot = new Shoot({ 0,0 }, 400, 10);
-	
+
 }
 
 void Player::DrawPlayer() {
-	colision = { x, y, width, height };	
+	colision = { x, y, width, height };
 	DrawRectangleRec(colision, RED);
 	object->DrawObstacle();
 	flyObject->DrawObstacle();
-	
+
 }
 
 void Player::MovePlayer() {
-	float timeJump = 0.5f;
-	float timeDown = 0.6f;
-	float speedJump = 1.5f;
-
+	cout << AlternVelocity << endl;
 	shoot->LogicShoot();
 	if (!shoot->IsActive())
 	{
 		shoot->GetPosition(GetX() + width / 2, GetY());
 	}
 
+
 	if (IsKeyDown(KEY_A))
 	{
-		x -= velocity * GetFrameTime();
+		x -= velocity.x * GetFrameTime();
 	}
 
 	if (IsKeyDown(KEY_D))
 	{
-		x += velocity * GetFrameTime();
+		x += velocity.x * GetFrameTime();
 	}
 
-	if (IsKeyPressed(KEY_SPACE))
-	{			
-		if (!jump)
-		{
-			StartTimer(&jumpTime, timeJump);
-		}
+	if (IsKeyPressed(KEY_SPACE) && !jump)
+	{
 		jump = true;
-		
+		AlternVelocity = velocity.y;
 	}
-	UpdateTimer(&jumpTime);
-	UpdateTimer(&jumpDown);
 
 	if (jump)
 	{
-		if (!TimerDone(&jumpTime))
-		{
-			y -= (velocity * speedJump) * GetFrameTime();
-		}
+		y -= AlternVelocity * GetFrameTime();
+		AlternVelocity -= gravity * GetFrameTime();
+	}
 
-		if (TimerDone(&jumpTime))
-		{
-			StartTimer(&jumpDown, timeDown);
-		}
-		
-		if (!TimerDone(&jumpDown))
-		{
-			jump = false;
-		}
-	}
-	if (!TimerDone(&jumpDown))
+	if (y > floorY)
 	{
-		y += (velocity * speedJump) * GetFrameTime();
+		y = floorY;
+		jump = false;
 	}
-	
-	if (y > static_cast<float>(GetScreenHeight() - 100))
-	{
-		y = static_cast<float>(GetScreenHeight() - 100);
-	}
-	
-	if (flyObject->CheckColisionShoot({shoot->GetX(), shoot->GetY()}, shoot->GetRadius()))
+
+	if (flyObject->CheckColisionShoot({ shoot->GetX(), shoot->GetY() }, shoot->GetRadius()))
 	{
 		shoot->ActiveFalse();
 	}
@@ -94,7 +82,7 @@ void Player::MovePlayer() {
 	object->CheckJumpPlayer(GetX(), GetY());
 	flyObject->MoveFlyObstacle();
 	flyObject->RestartFlyPosition();
-	
+
 }
 
 bool Player::CheckColision() {
@@ -116,7 +104,7 @@ void Player::RestartPlayer() {
 }
 
 float Player::GetXVelocity() {
-	return x / velocity * 2;
+	return x / velocity.x * 2;
 }
 
 float Player::GetX() {

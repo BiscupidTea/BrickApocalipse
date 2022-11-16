@@ -8,22 +8,23 @@ private:
 	float x;
 	float y;
 
-	float velocity;
+	float floorY;
+
+	Vector2 velocity;
+	float AlternVelocity;
+	float gravity;
 	float width;
 	float height;
 	
 	bool jump;
 	Rectangle colision;
 
-	Shoot* shoot[3];
+	Shoot* shoot;
 	Obstacle* object;
 	Obstacle* flyObject;
 
-	Timer jumpTime;
-	Timer jumpDown;
-
 public:
-	Player(float x, float y, float velocity, float width, float height);
+	Player(float x, float y, float velocityX, float velocityY, float gravity, float width, float height);
 	void DrawPlayer();
 	void MovePlayer();
 	bool CheckColision();
