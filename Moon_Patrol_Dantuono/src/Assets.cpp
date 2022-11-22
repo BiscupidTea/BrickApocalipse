@@ -27,7 +27,7 @@ void DrawBackgroundGame() {
 }
 
 void DrawFloorParallax() {
-	scrollback -= 2.0f + (GetMovementPlayer() / 4);
+	scrollback -= GetMovementPlayer() * GetFrameTime();
 
 	if (scrollback <= -floor.width * 2) scrollback = 0;
 	DrawTextureEx(floor, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
@@ -35,7 +35,7 @@ void DrawFloorParallax() {
 }
 
 void DrawMountainParallax() {
-	scrollbackMountain -= 1.5f + (GetMovementPlayer() / 4);
+	scrollbackMountain -= GetMovementPlayer() / 4 * GetFrameTime();
 
 	if (scrollbackMountain <= -mountain.width * 2) scrollbackMountain = 0;
 	DrawTextureEx(mountain, { scrollbackMountain, 200 }, 0, 2, WHITE);
@@ -44,7 +44,7 @@ void DrawMountainParallax() {
 }
 
 void DrawBackgroundParallax() {
-	scrollbackground -= 0.5f + (GetMovementPlayer() / 4);
+	scrollbackground -= GetMovementPlayer() / 2 * GetFrameTime();
 
 	if (scrollbackground <= -background.width * 2) scrollbackground = 0;
 	DrawTextureEx(background, { scrollbackground, 0 }, 0, 2, WHITE);

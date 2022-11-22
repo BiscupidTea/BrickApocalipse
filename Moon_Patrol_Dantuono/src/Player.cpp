@@ -6,52 +6,45 @@
 #include <iostream>
 using namespace std;
 
-Player::Player(float x, float y, float velocityX, float velocityY, float gravity, float width, float height) {
-	this->x = x;
-	this->y = y;
+Player::Player(float x, float y, float velocityX, float velocityY, float gravity, float width, float height, Color color) {
+	this->colision.x = x;
+	this->colision.y = y;
 	this->velocity.x = velocityX;
 	this->floorY = y;
 	this->velocity.y = velocityY;
 	this->AlternVelocity = velocityY;
 	this->gravity = gravity;
-	this->width = width;
-	this->height = height;
+	this->colision.width = width;
+	this->colision.height = height;
+	this->color = color;
 
 	jump = false;
-
-	object = new Obstacle(static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight() - 100), 200, 50, 50);
-	flyObject = new Obstacle(100, static_cast<float>(GetScreenHeight() + 200), 200, 50, 50);
-
 
 	shoot = new Shoot({ 0,0 }, 400, 10);
 
 }
 
 void Player::DrawPlayer() {
-	colision = { x, y, width, height };
-	DrawRectangleRec(colision, RED);
-	object->DrawObstacle();
-	flyObject->DrawObstacle();
-
+	DrawRectangleRec(colision, color);
 }
 
-void Player::MovePlayer() {
-	cout << AlternVelocity << endl;
+void Player::MovePlayer(Obstacle* flyObject) {
+	cout << colision.x << endl;
 	shoot->LogicShoot();
 	if (!shoot->IsActive())
 	{
-		shoot->GetPosition(GetX() + width / 2, GetY());
+		shoot->GetPosition(GetX() + colision.width / 2, GetY());
 	}
 
 
 	if (IsKeyDown(KEY_A))
 	{
-		x -= velocity.x * GetFrameTime();
+		colision.x -= velocity.x * GetFrameTime();
 	}
 
 	if (IsKeyDown(KEY_D))
 	{
-		x += velocity.x * GetFrameTime();
+		colision.x += velocity.x * GetFrameTime();
 	}
 
 	if (IsKeyPressed(KEY_SPACE) && !jump)
@@ -62,13 +55,13 @@ void Player::MovePlayer() {
 
 	if (jump)
 	{
-		y -= AlternVelocity * GetFrameTime();
+		colision.y -= AlternVelocity * GetFrameTime();
 		AlternVelocity -= gravity * GetFrameTime();
 	}
 
-	if (y > floorY)
+	if (colision.y > floorY)
 	{
-		y = floorY;
+		colision.y = floorY;
 		jump = false;
 	}
 
@@ -77,15 +70,19 @@ void Player::MovePlayer() {
 		shoot->ActiveFalse();
 	}
 
-	object->MoveObstacle();
-	object->RestartPosition();
-	object->CheckJumpPlayer(GetX(), GetY());
-	flyObject->MoveFlyObstacle();
-	flyObject->RestartFlyPosition();
+	if (colision.x + colision.width > GetScreenWidth())
+	{
+		colision.x = GetScreenWidth() - colision.width;
+	}
+	
+	if (colision.x < 0)
+	{
+		colision.x = 0;
+	}
 
 }
 
-bool Player::CheckColision() {
+bool Player::CheckColision(Obstacle* object) {
 	if (CheckCollisionRecs(colision, Rectangle{ object->GetX(), object->GetY(), object->GetWidht(), object->GetHeight() }))
 	{
 		return true;
@@ -96,21 +93,21 @@ bool Player::CheckColision() {
 	}
 }
 
-void Player::RestartPlayer() {
-	x = 10;
-	y = static_cast<float>(GetScreenHeight() - 100);
+void Player::RestartPlayer(Obstacle* object) {
+	colision.x = 10;
+	colision.y = static_cast<float>(GetScreenHeight() - 100);
 
 	object->RestartObstacle();
 }
 
 float Player::GetXVelocity() {
-	return x / velocity.x * 2;
+	return velocity.x;
 }
 
 float Player::GetX() {
-	return x;
+	return colision.x;
 }
 
 float Player::GetY() {
-	return y;
+	return colision.y;
 }

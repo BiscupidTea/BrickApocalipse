@@ -5,13 +5,7 @@
 
 class Obstacle {
 private:
-	float x;
-	float y;
-
 	float velocity;
-	float width;
-	float height;
-
 	int checkcolision = 0;
 	bool active;
 	Rectangle colision;

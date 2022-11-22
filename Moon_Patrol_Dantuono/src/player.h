@@ -5,30 +5,28 @@
 
 class Player {
 private:
-	float x;
-	float y;
-
 	float floorY;
 
 	Vector2 velocity;
 	float AlternVelocity;
 	float gravity;
-	float width;
-	float height;
-	
+	Color color;
 	bool jump;
 	Rectangle colision;
 
 	Shoot* shoot;
-	Obstacle* object;
-	Obstacle* flyObject;
 
 public:
-	Player(float x, float y, float velocityX, float velocityY, float gravity, float width, float height);
+	Player(
+		float x, float y, 
+		float velocityX, float velocityY, 
+		float gravity, 
+		float width, float height, 
+		Color color);
 	void DrawPlayer();
-	void MovePlayer();
-	bool CheckColision();
-	void RestartPlayer();
+	void MovePlayer(Obstacle* flyObject);
+	bool CheckColision(Obstacle* object);
+	void RestartPlayer(Obstacle* object);
 	float GetXVelocity();
 	float GetX();
 	float GetY();

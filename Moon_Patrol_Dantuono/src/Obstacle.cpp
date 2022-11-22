@@ -4,23 +4,22 @@
 #include "raymath.h"
 
 Obstacle::Obstacle(float x, float y, float velocity, float width, float height) {
-	this->x = x;
-	this->y = y;
+	this->colision.x = x;
+	this->colision.y = y;
 	this->velocity = velocity;
-	this->width = width;
-	this->height = height;
+	this->colision.width = width;
+	this->colision.height = height;
 
 	active = true;
 	StartTimer(&moveUp, 0.4f);
 }
 
 void Obstacle::DrawObstacle() {
-	this->colision = { x, y, width, height };
 	DrawRectangleRec(colision, WHITE);
 }
 
 void Obstacle::MoveObstacle() {
-	x -= velocity * GetFrameTime();
+	colision.x -= velocity * GetFrameTime();
 }
 
 void Obstacle::MoveFlyObstacle() {
@@ -32,11 +31,11 @@ void Obstacle::MoveFlyObstacle() {
 	UpdateTimer(&moveDown);
 	if (active)
 	{
-		x += velocity * GetFrameTime();
+		colision.x += velocity * GetFrameTime();
 
 		if (!TimerDone(&moveUp))
 		{
-			y -= (velocity / speedMovement) * GetFrameTime();
+			colision.y -= (velocity / speedMovement) * GetFrameTime();
 		}
 
 		if (TimerDone(&moveUp))
@@ -46,18 +45,18 @@ void Obstacle::MoveFlyObstacle() {
 
 		if (!TimerDone(&moveDown))
 		{
-			y += (velocity / speedMovement) * GetFrameTime();
+			colision.y += (velocity / speedMovement) * GetFrameTime();
 		}
 
-		if (y > GetScreenHeight() / 2 - 120)
+		if (colision.y > GetScreenHeight() / 2 - 120)
 		{
 			StartTimer(&moveUp, timeUp);
 		}
 	}
 	else
 	{
-		x = 0 - width; 
-		y = static_cast<float>(GetScreenHeight() / 4);
+		colision.x = 0 - colision.width;
+		colision.y = static_cast<float>(GetScreenHeight() / 4);
 		if (GetRandomValue(1,300) == 50)
 		{
 			active = true;
@@ -79,8 +78,8 @@ bool Obstacle::CheckColisionShoot(Vector2 center, float radius) {
 
 void Obstacle::CheckJumpPlayer(float X, float Y) {
 	
-	Rectangle colisionObstacle = { x, y - 200, 10, 200 };
-	Rectangle colisionPlayer = { X, Y, 2, height  * 2 };
+	Rectangle colisionObstacle = { colision.x, colision.y - 200, 10, 200 };
+	Rectangle colisionPlayer = { X, Y, 2, colision.height  * 2 };
 
 	if (CheckCollisionRecs(colisionPlayer, colisionObstacle))
 	{
@@ -98,36 +97,36 @@ void Obstacle::CheckJumpPlayer(float X, float Y) {
 }
 
 float Obstacle::GetX() {
-	return x;
+	return colision.x;
 }
 
 float Obstacle::GetY() {
-	return y;
+	return colision.y;
 }
 
 float Obstacle::GetWidht() {
-	return width;
+	return colision.width;
 }
 
 float Obstacle::GetHeight() {
-	return height;
+	return colision.height;
 }
 
 void Obstacle::RestartPosition() {
-	if (x < 0 - width)
+	if (colision.x < 0 - colision.width)
 	{
-		x = static_cast<float>(GetScreenWidth());
+		colision.x = static_cast<float>(GetScreenWidth());
 	}
 }
 
 void Obstacle::RestartFlyPosition() {
-	if (x > GetScreenWidth() + width)
+	if (colision.x > GetScreenWidth() + colision.width)
 	{
-		x = 0 - width;
+		colision.x = 0 - colision.width;
 	}
 }
 
 void Obstacle::RestartObstacle() {
-	x = static_cast<float>(GetScreenWidth());
-	y = static_cast<float>(GetScreenHeight() - 100);
+	colision.x = static_cast<float>(GetScreenWidth());
+	colision.y = static_cast<float>(GetScreenHeight() - 100);
 }
