@@ -3,16 +3,16 @@
 
 enum GameScene {
 	Menu,
-	Gameplay,
+	GameLoop,
 	Credits,
 }static gamescene;
 
 void ScreenScene();
 void GameplayScene();
-void DrawGameplay();
+void Gameplay();
 void MenuScene();
 void DrawMenu();
-void CheckDefeat(bool isDefeat);
+void CheckDefeat(bool isDefeat1, bool isDefeat2);
 void Draw();
 void Update();
 void RestartGameplay();

@@ -7,6 +7,7 @@ class Player {
 private:
 	float floorY;
 
+	bool isAlive;
 	Vector2 velocity;
 	float AlternVelocity;
 	float gravity;
@@ -24,12 +25,14 @@ public:
 		float width, float height, 
 		Color color);
 	void DrawPlayer();
-	void MovePlayer(Obstacle* flyObject);
-	bool CheckColision(Obstacle* object);
+	void MovePlayer1(Obstacle* flyObject, Shoot* shoot1);
+	void MovePlayer2(Obstacle* flyObject, Shoot* shoot2);
+	void CheckColision(Obstacle* object);
 	void RestartPlayer(Obstacle* object);
 	float GetXVelocity();
 	float GetX();
 	float GetY();
+	bool IsAlive();
 };
 
 static int jumpTimer = 0;

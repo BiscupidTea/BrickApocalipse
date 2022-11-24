@@ -10,8 +10,26 @@ Shoot::Shoot(Vector2 position, float speed, float radius) {
 }
 
 
-void Shoot::LogicShoot() {
-	if (IsKeyPressed(KEY_B))
+void Shoot::LogicShoot1() {
+	if (IsKeyPressed(KEY_F))
+	{
+		active = true;
+	}
+
+	if (active)
+	{
+		DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), radius, RED);
+		position.y -= speed * GetFrameTime();
+
+		if (position.y + radius < 0)
+		{
+			active = false;
+		}
+	}
+}
+
+void Shoot::LogicShoot2() {
+	if (IsKeyPressed(KEY_L))
 	{
 		active = true;
 	}

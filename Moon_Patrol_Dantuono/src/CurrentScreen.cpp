@@ -8,7 +8,7 @@ void ScreenScene() {
 		SetExitKey(KEY_ESCAPE);
 		MenuScene();
 		break;
-	case Gameplay:
+	case GameLoop:
 		SetExitKey(NULL);
 		GameplayScene();		
 		break;
@@ -29,7 +29,7 @@ void CreditsScene() {
 }
 
 void GameplayScene() {
-	DrawGameplay();
+	Gameplay();
 	if (IsKeyPressed(KEY_ESCAPE))
 	{
 		gamescene = GameScene::Menu;
@@ -44,7 +44,7 @@ void DrawMenu() {
 	RestartScore();
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		gamescene = GameScene::Gameplay;
+		gamescene = GameScene::GameLoop;
 	}
 
 	if (IsKeyPressed(KEY_ENTER))
@@ -55,8 +55,8 @@ void DrawMenu() {
 	VersionGame();
 }
 
-void CheckDefeat(bool isDefeat) {
-	if (isDefeat)
+void CheckDefeat(bool isDefeat1, bool isDefeat2) {
+	if (!isDefeat1 || !isDefeat2)
 	{
 		gamescene = GameScene::Menu;
 	}

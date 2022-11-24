@@ -93,6 +93,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -120,6 +122,21 @@
       <AdditionalLibraryDirectories>$(SolutionDir)libs/Raylib/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>IF NOT EXIST "$(TargetDir)res\" (
+CD $(TargetDir)
+MKDIR res
+
+CD res
+
+MKDIR sounds
+MKDIR textures
+
+XCOPY "$(SolutionDir)DESAROLLO1_TM_Asteroids_EnzoColetta\res\textures"  "$(TargetDir)res\textures"
+XCOPY "$(SolutionDir)DESAROLLO1_TM_Asteroids_EnzoColetta\res\sounds"  "$(TargetDir)res\sounds"
+)
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -141,6 +158,21 @@
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <PostBuildEvent>
+      <Command>IF NOT EXIST "$(TargetDir)res\" (
+CD $(TargetDir)
+MKDIR res
+
+CD res
+
+MKDIR sounds
+MKDIR textures
+
+XCOPY "$(SolutionDir)DESAROLLO1_TM_Asteroids_EnzoColetta\res\textures"  "$(TargetDir)res\textures"
+XCOPY "$(SolutionDir)DESAROLLO1_TM_Asteroids_EnzoColetta\res\sounds"  "$(TargetDir)res\sounds"
+)
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

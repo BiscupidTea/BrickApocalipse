@@ -11,7 +11,8 @@ private:
 public:
     Shoot(Vector2 position, float speed, float radius);
     void GetPosition(float x, float y);
-    void LogicShoot();
+    void LogicShoot1();
+    void LogicShoot2();
     float GetX();
     float GetY();
     float GetRadius();
