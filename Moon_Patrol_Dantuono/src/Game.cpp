@@ -39,6 +39,17 @@ void RunGame() {
 
 void Draw() {
 
+	DrawBackgroundGame();
+
+	if (shoot1->IsActive())
+	{
+		shoot1->DrawBullet();
+	}
+	if (shoot2->IsActive())
+	{
+		shoot2->DrawBullet();
+	}
+
 	player1->DrawPlayer();
 	player2->DrawPlayer();
 
@@ -47,14 +58,13 @@ void Draw() {
 }
 
 void Update() {
-	player1->CheckColision(object);
 	player1->MovePlayer1(flyObject, shoot1);
+	player1->CheckColision(object);
 	
-	player2->CheckColision(object);
 	player2->MovePlayer2(flyObject, shoot2);
+	player2->CheckColision(object);
 	
 	CheckDefeat(player1->IsAlive(), player2->IsAlive());
-	DrawBackgroundGame();
 
 	object->MoveObstacle();
 	object->RestartPosition();

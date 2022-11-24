@@ -15,8 +15,6 @@ private:
 	bool jump;
 	Rectangle colision;
 
-	Shoot* shoot;
-
 public:
 	Player(
 		float x, float y, 

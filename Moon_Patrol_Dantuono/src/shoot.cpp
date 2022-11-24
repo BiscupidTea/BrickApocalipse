@@ -1,4 +1,6 @@
 #include "shoot.h"
+#include <iostream>
+using namespace std;
 
 Shoot::Shoot(Vector2 position, float speed, float radius) {
 	this->position = position;
@@ -18,7 +20,6 @@ void Shoot::LogicShoot1() {
 
 	if (active)
 	{
-		DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), radius, RED);
 		position.y -= speed * GetFrameTime();
 
 		if (position.y + radius < 0)
@@ -36,7 +37,6 @@ void Shoot::LogicShoot2() {
 
 	if (active)
 	{
-		DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), radius, RED);
 		position.y -= speed * GetFrameTime();
 
 		if (position.y + radius < 0)
@@ -46,20 +46,18 @@ void Shoot::LogicShoot2() {
 	}
 }
 
+void Shoot::DrawBullet()
+{
+	DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), radius, RED);
+}
+
 void Shoot::GetPosition(float x, float y) {
 	position.x = x;
 	position.y = y;
 }
 
 bool Shoot::IsActive() {
-	if (active)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return active;
 }
 
 float Shoot::GetX() {

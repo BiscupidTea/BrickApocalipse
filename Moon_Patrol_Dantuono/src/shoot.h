@@ -18,4 +18,5 @@ public:
     float GetRadius();
     void ActiveFalse();
     bool IsActive();
+    void DrawBullet();
 };
