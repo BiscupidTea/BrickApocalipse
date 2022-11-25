@@ -24,11 +24,12 @@ void RunGame() {
 	SetExitKey(KEY_NULL);
 	LoadResources();
 	bool IsRunning = true;
+	bool multiplayer = false;
 
 	while (!WindowShouldClose() && IsRunning)
 	{
 		ClearBackground(BLACK);
-		ScreenScene(IsRunning);
+		ScreenScene(IsRunning, multiplayer);
 	}
 
 	delete player1;
@@ -37,7 +38,7 @@ void RunGame() {
 	CloseWindow();
 }
 
-void Draw() {
+void Draw(bool& multiplayer) {
 
 	BeginDrawing();
 	DrawBackgroundGame();
@@ -46,28 +47,44 @@ void Draw() {
 	{
 		shoot1->DrawBullet();
 	}
-	if (shoot2->IsActive())
+
+	if (multiplayer)
 	{
-		shoot2->DrawBullet();
+		if (shoot2->IsActive())
+		{
+			shoot2->DrawBullet();
+		}
 	}
 
 	player1->DrawPlayer();
-	player2->DrawPlayer();
+	if (multiplayer)
+	{
+		player2->DrawPlayer();
+	}
 
 	object->DrawObstacle();
 	flyObject->DrawObstacle();
 	EndDrawing();
 }
 
-void Update() {
+void Update(bool& multiplayer) {
 	player1->MovePlayer1(flyObject, shoot1);
 	player1->CheckColision(object);
 
-	player2->MovePlayer2(flyObject, shoot2);
-	player2->CheckColision(object);
+	if (multiplayer)
+	{
+		player2->MovePlayer2(flyObject, shoot2);
+		player2->CheckColision(object);
+	}
 
-
-	CheckDefeat(player1->IsAlive());
+	if (multiplayer)
+	{
+		CheckDefeatM(player1->IsAlive(), player2->IsAlive());
+	}
+	else
+	{
+		CheckDefeat(player1->IsAlive());
+	}
 
 	object->MoveObstacle();
 	object->RestartPosition();
@@ -81,9 +98,9 @@ void VersionGame() {
 	DrawText("Version: 0.4", GetScreenWidth() - 150, GetScreenHeight() - 25, 25, WHITE);
 }
 
-void Gameplay() {
-	Update();
-	Draw();
+void Gameplay(bool& multiplayer) {
+	Update(multiplayer);
+	Draw(multiplayer);
 	DrawScore();
 	VersionGame();
 }

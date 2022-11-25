@@ -1,16 +1,16 @@
 #include "currentScreen.h"
 #include "score.h"
 
-void ScreenScene(bool& IsRunning) {
+void ScreenScene(bool& IsRunning, bool& multiplayer) {
 	switch (gamescene)
 	{
 	case GameScene::Menu:
 		SetExitKey(KEY_ESCAPE);
-		MenuScene();
+		MenuScene(multiplayer);
 		break;
 	case GameScene::GameLoop:
 		SetExitKey(NULL);
-		GameplayScene();
+		Gameplay(multiplayer);
 		break;
 	case GameScene::Credits:
 		SetExitKey(NULL);
@@ -23,21 +23,17 @@ void ScreenScene(bool& IsRunning) {
 		break;
 	}
 }
-void MenuScene() {
+void MenuScene(bool& multiplayer) {
 	BeginDrawing();
 	DrawMenu();
 	EndDrawing();
-	CheckInputMenu();
+	CheckInputMenu(multiplayer);
 }
 
 void CreditsScene() {
 	BeginDrawing();
 	DrawCredits();
 	EndDrawing();
-}
-
-void GameplayScene() {
-	Gameplay();
 }
 
 void DrawMenu() {
@@ -69,7 +65,7 @@ void CheckDefeatM(bool isDefeat1, bool isDefeat2) {
 	}
 }
 
-void CheckInputMenu()
+void CheckInputMenu(bool& multiplayer)
 {
 	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
@@ -78,6 +74,7 @@ void CheckInputMenu()
 			static_cast<float>(GetScreenHeight() / 100 * 40), static_cast<float>((MeasureText("Singleplayer", 40))), 60 }))
 		{
 			gamescene = GameScene::GameLoop;
+			multiplayer = false;
 			RestartScore();
 			RestartGameplay();
 		}
@@ -87,7 +84,7 @@ void CheckInputMenu()
 			static_cast<float>(GetScreenHeight() / 100 * 50), static_cast<float>((MeasureText("Multiplayer", 40))), 60 }))
 		{
 			gamescene = GameScene::GameLoop;
-			
+			multiplayer = true;
 			RestartScore();
 			RestartGameplay();
 		}
