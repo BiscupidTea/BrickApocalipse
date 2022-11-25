@@ -21,16 +21,16 @@ Shoot* shoot2 = new Shoot({ 0,0 }, 400, 10);
 
 void RunGame() {
 	InitWindow(screenWidth, screenHeight, "Moon Patrol By Manuel Dantuono");
+	SetExitKey(KEY_NULL);
 	LoadResources();
-	while (!WindowShouldClose())
+	bool IsRunning = true;
+
+	while (!WindowShouldClose() && IsRunning)
 	{
-		BeginDrawing();
 		ClearBackground(BLACK);
-
-		ScreenScene();
-		EndDrawing();
-
+		ScreenScene(IsRunning);
 	}
+
 	delete player1;
 	delete player2;
 	UnloadResources();
@@ -39,6 +39,7 @@ void RunGame() {
 
 void Draw() {
 
+	BeginDrawing();
 	DrawBackgroundGame();
 
 	if (shoot1->IsActive())
@@ -55,16 +56,18 @@ void Draw() {
 
 	object->DrawObstacle();
 	flyObject->DrawObstacle();
+	EndDrawing();
 }
 
 void Update() {
 	player1->MovePlayer1(flyObject, shoot1);
 	player1->CheckColision(object);
-	
+
 	player2->MovePlayer2(flyObject, shoot2);
 	player2->CheckColision(object);
-	
-	CheckDefeat(player1->IsAlive(), player2->IsAlive());
+
+
+	CheckDefeat(player1->IsAlive());
 
 	object->MoveObstacle();
 	object->RestartPosition();
@@ -86,8 +89,10 @@ void Gameplay() {
 }
 
 void RestartGameplay() {
-	player1->RestartPlayer(object);
-	player2->RestartPlayer(object);
+	player1->RestartPlayer();
+	player2->RestartPlayer();
+	object->RestartObstacle();
+	flyObject->RestartFlyObstacle();
 }
 
 float GetMovementPlayer() {

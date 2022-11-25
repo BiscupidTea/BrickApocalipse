@@ -10,6 +10,8 @@ Obstacle::Obstacle(float x, float y, float velocity, float width, float height) 
 	this->colision.width = width;
 	this->colision.height = height;
 
+	moveDown.lifeTime = 0;
+
 	active = true;
 	StartTimer(&moveUp, 0.4f);
 }
@@ -129,4 +131,8 @@ void Obstacle::RestartFlyPosition() {
 void Obstacle::RestartObstacle() {
 	colision.x = static_cast<float>(GetScreenWidth());
 	colision.y = static_cast<float>(GetScreenHeight() - 100);
+}
+
+void Obstacle::RestartFlyObstacle() {
+	colision.x = static_cast<float>(GetScreenWidth());
 }

@@ -143,11 +143,10 @@ void Player::CheckColision(Obstacle* object) {
 	}
 }
 
-void Player::RestartPlayer(Obstacle* object) {
+void Player::RestartPlayer() {
 	colision.x = 10;
 	colision.y = static_cast<float>(GetScreenHeight() - 100);
-
-	object->RestartObstacle();
+	isAlive = true;
 }
 
 float Player::GetXVelocity() {

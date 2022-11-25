@@ -27,4 +27,5 @@ public:
 	void RestartPosition();
 	void RestartFlyPosition();
 	void RestartObstacle();
+	void RestartFlyObstacle();
 };

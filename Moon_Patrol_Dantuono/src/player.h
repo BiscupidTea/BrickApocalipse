@@ -26,7 +26,7 @@ public:
 	void MovePlayer1(Obstacle* flyObject, Shoot* shoot1);
 	void MovePlayer2(Obstacle* flyObject, Shoot* shoot2);
 	void CheckColision(Obstacle* object);
-	void RestartPlayer(Obstacle* object);
+	void RestartPlayer();
 	float GetXVelocity();
 	float GetX();
 	float GetY();
