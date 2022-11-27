@@ -1,9 +1,11 @@
 #pragma once
 #include "raylib.h"
+#include "assets.h"
 
 enum class GameScene {
 	Menu,
 	GameLoop,
+	Rules,
 	Credits,
 	Exit,
 };
@@ -23,3 +25,4 @@ void RestartGameplay();
 void VersionGame();
 void CreditsScene();
 void DrawCredits();
+void DrawRules();
