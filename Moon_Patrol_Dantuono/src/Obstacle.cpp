@@ -9,6 +9,7 @@ Obstacle::Obstacle(float x, float y, float velocity, float width, float height) 
 	this->velocity = velocity;
 	this->colision.width = width;
 	this->colision.height = height;
+	this->passedPlayer = false;
 
 	moveDown.lifeTime = 0;
 
@@ -135,4 +136,14 @@ void Obstacle::RestartObstacle() {
 
 void Obstacle::RestartFlyObstacle() {
 	colision.x = static_cast<float>(GetScreenWidth());
+}
+
+bool Obstacle::GetPassedPlayer()
+{
+	return passedPlayer;
+}
+
+void Obstacle::SetPassedPlayer(bool is)
+{
+	passedPlayer = is;
 }

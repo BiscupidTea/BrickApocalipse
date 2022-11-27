@@ -43,6 +43,34 @@ void Draw(bool& multiplayer) {
 	BeginDrawing();
 	DrawBackgroundGame();
 
+	DrawScore();
+	if (!multiplayer)
+	{
+		if (player1->GetX() > object->GetX() && !(object->GetPassedPlayer()))
+		{
+			object->SetPassedPlayer(true);
+			AddScore(1);
+		}
+
+		if (object->GetX() > player1->GetX())
+		{
+			object->SetPassedPlayer(false);
+		}
+	}
+	else
+	{
+		if (player1->GetX() > object->GetX() && player2->GetX() > object->GetX() && !(object->GetPassedPlayer()))
+		{
+			object->SetPassedPlayer(true);
+			AddScore(1);
+		}
+
+		if (object->GetX() > player1->GetX() && (object->GetX() > player2->GetX()))
+		{
+			object->SetPassedPlayer(false);
+		}
+	}
+
 	if (shoot1->IsActive())
 	{
 		shoot1->DrawBullet();
@@ -101,7 +129,6 @@ void VersionGame() {
 void Gameplay(bool& multiplayer) {
 	Update(multiplayer);
 	Draw(multiplayer);
-	DrawScore();
 	VersionGame();
 }
 

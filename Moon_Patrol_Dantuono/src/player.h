@@ -31,6 +31,7 @@ public:
 	float GetX();
 	float GetY();
 	bool IsAlive();
+	int GetScore();
 };
 
 static int jumpTimer = 0;

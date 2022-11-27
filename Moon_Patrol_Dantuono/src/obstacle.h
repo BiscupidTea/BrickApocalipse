@@ -9,6 +9,7 @@ private:
 	int checkcolision = 0;
 	bool active;
 	Rectangle colision;
+	bool passedPlayer;
 
 	Timer moveUp;
 	Timer moveDown;
@@ -28,4 +29,6 @@ public:
 	void RestartFlyPosition();
 	void RestartObstacle();
 	void RestartFlyObstacle();
+	bool GetPassedPlayer();
+	void SetPassedPlayer(bool is);
 };

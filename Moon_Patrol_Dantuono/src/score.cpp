@@ -3,7 +3,7 @@
 #include "raylib.h"
 
 void DrawScore() {
-	DrawText(TextFormat("Puntuacion: %02i", score), 10, 10, 40, BLUE);
+	DrawText(TextFormat("%07i", score), GetScreenWidth() - MeasureText("0000000", 50) - 50, 0, 50, BLACK);
 }
 
 void DrawMaxScore() {
