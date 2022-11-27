@@ -1,7 +1,6 @@
 #include "player.h"
 
 #include "raylib.h"
-#include "raymath.h"
 
 #include <iostream>
 using namespace std;
@@ -22,8 +21,12 @@ Player::Player(float x, float y, float velocityX, float velocityY, float gravity
 	jump = false;
 }
 
-void Player::DrawPlayer() {
-	DrawRectangleRec(colision, color);
+void Player::DrawPlayer1() {
+	DrawRectangle(static_cast<int>(colision.x), static_cast<int>(colision.y), static_cast<int>(colision.width), static_cast<int>(colision.height), RED);
+}
+
+void Player::DrawPlayer2() {
+	DrawRectangle(static_cast<int>(colision.x), static_cast<int>(colision.y), static_cast<int>(colision.width), static_cast<int>(colision.height), BLUE);
 }
 
 void Player::MovePlayer1(Obstacle* flyObject, Shoot* shoot1) {

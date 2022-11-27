@@ -121,6 +121,7 @@ void CheckInputMenu(bool& multiplayer)
 
 void DrawCredits() {
 	DrawBackgroundGame();
+	DrawRectangle(100, 100, 800, 600, BLACK);
 	DrawText("Moon Patrol Credits",
 		GetScreenWidth() / 2 - (MeasureText("Moon Patrol Credits", 50) / 2),
 		GetScreenHeight() / 2 - 200, 50, WHITE);

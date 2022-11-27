@@ -1,12 +1,16 @@
 #include "assets.h"
 
 void LoadResources() {
-	floor = LoadTexture("rsc/floorParallax.png");
+	floor1 = LoadTexture("rsc/floorParallax.png");
 	mountain = LoadTexture("rsc/mountainParallax.png");
 	background = LoadTexture("rsc/backgroundParallax.png");
+	p1 = LoadTexture("rsc/player1.png");
+	p2 = LoadTexture("rsc/player2.png");
+	rock = LoadTexture("rsc/backgroundParallax.png");
+	flyenemy = LoadTexture("rsc/backgroundParallax.png");
 
-	floor.width = GetScreenWidth();
-	floor.height = GetScreenWidth() / 16;
+	floor1.width = GetScreenWidth();
+	floor1.height = GetScreenWidth() / 16;
 	mountain.width = GetScreenWidth() / 2;
 	mountain.height = GetScreenHeight() / 2;
 	background.width = GetScreenWidth();
@@ -14,9 +18,11 @@ void LoadResources() {
 }
 
 void UnloadResources() {
-	UnloadTexture(floor);
+	UnloadTexture(floor1);
 	UnloadTexture(mountain);
 	UnloadTexture(background);
+	UnloadTexture(p1);
+	UnloadTexture(p2);
 }
 
 void DrawBackgroundGame() {
@@ -29,9 +35,9 @@ void DrawBackgroundGame() {
 void DrawFloorParallax() {
 	scrollback -= GetMovementPlayer() * GetFrameTime();
 
-	if (scrollback <= -floor.width * 2) scrollback = 0;
-	DrawTextureEx(floor, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
-	DrawTextureEx(floor, { floor.width * 2  + scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
+	if (scrollback <= -floor1.width * 2) scrollback = 0;
+	DrawTextureEx(floor1, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
+	DrawTextureEx(floor1, { floor1.width * 2  + scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
 }
 
 void DrawMountainParallax() {

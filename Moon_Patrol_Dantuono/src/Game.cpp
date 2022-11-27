@@ -16,7 +16,7 @@ Obstacle* flyObject = new Obstacle(100, static_cast<float>(GetScreenHeight() + 2
 Player* player1 = new Player(10, static_cast<float>(screenHeight - 100), 300, 300, 350, 50, 50, RED);
 Shoot* shoot1 = new Shoot({ 0,0 }, 400, 10);
 
-Player* player2 = new Player(10, static_cast<float>(screenHeight - 100), 300, 300, 350, 50, 50, BLUE);
+Player* player2 = new Player(50, static_cast<float>(screenHeight - 100), 300, 300, 350, 50, 50, BLUE);
 Shoot* shoot2 = new Shoot({ 0,0 }, 400, 10);
 
 void RunGame() {
@@ -84,14 +84,14 @@ void Draw(bool& multiplayer) {
 		}
 	}
 
-	player1->DrawPlayer();
+	player1->DrawPlayer1();
 	if (multiplayer)
 	{
-		player2->DrawPlayer();
+		player2->DrawPlayer2();
 	}
 
-	object->DrawObstacle();
-	flyObject->DrawObstacle();
+	object->DrawObstacleFloor();
+	flyObject->DrawObstacleFly();
 	EndDrawing();
 }
 

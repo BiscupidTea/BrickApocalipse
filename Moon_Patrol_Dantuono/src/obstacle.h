@@ -1,5 +1,6 @@
 #pragma once
 #include "timer.h"
+#include "assets.h"
 
 #include "raylib.h"
 
@@ -16,7 +17,8 @@ private:
 
 public:
 	Obstacle(float x, float y, float velocity, float width, float height);
-	void DrawObstacle();
+	void DrawObstacleFloor();
+	void DrawObstacleFly();
 	void MoveObstacle();
 	void MoveFlyObstacle();
 	bool CheckColisionShoot(Vector2 center, float radius);

@@ -1,6 +1,4 @@
 #include "shoot.h"
-#include <iostream>
-using namespace std;
 
 Shoot::Shoot(Vector2 position, float speed, float radius) {
 	this->position = position;

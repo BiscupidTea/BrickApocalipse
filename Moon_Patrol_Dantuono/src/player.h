@@ -2,6 +2,7 @@
 #include "timer.h"
 #include "obstacle.h"
 #include "shoot.h"
+#include "assets.h"
 
 class Player {
 private:
@@ -22,7 +23,8 @@ public:
 		float gravity, 
 		float width, float height, 
 		Color color);
-	void DrawPlayer();
+	void DrawPlayer1();
+	void DrawPlayer2();
 	void MovePlayer1(Obstacle* flyObject, Shoot* shoot1);
 	void MovePlayer2(Obstacle* flyObject, Shoot* shoot2);
 	void CheckColision(Obstacle* object);
@@ -31,7 +33,6 @@ public:
 	float GetX();
 	float GetY();
 	bool IsAlive();
-	int GetScore();
 };
 
 static int jumpTimer = 0;

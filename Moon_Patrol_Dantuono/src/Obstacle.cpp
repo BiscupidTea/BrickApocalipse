@@ -1,8 +1,6 @@
 #include "obstacle.h"
 #include "score.h"
 
-#include "raymath.h"
-
 Obstacle::Obstacle(float x, float y, float velocity, float width, float height) {
 	this->colision.x = x;
 	this->colision.y = y;
@@ -17,8 +15,15 @@ Obstacle::Obstacle(float x, float y, float velocity, float width, float height) 
 	StartTimer(&moveUp, 0.4f);
 }
 
-void Obstacle::DrawObstacle() {
+void Obstacle::DrawObstacleFloor() {
 	DrawRectangleRec(colision, WHITE);
+	DrawTextureEx(rock, { colision.x, colision.y }, 0, 1, WHITE);
+}
+
+void Obstacle::DrawObstacleFly()
+{
+	DrawRectangleRec(colision, WHITE);
+	DrawTextureEx(flyenemy, { colision.x, colision.y }, 0, 1, WHITE);
 }
 
 void Obstacle::MoveObstacle() {
