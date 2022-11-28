@@ -123,7 +123,7 @@ void Update(bool& multiplayer) {
 }
 
 void VersionGame() {
-	DrawText("Version: 0.4", GetScreenWidth() - 150, GetScreenHeight() - 25, 25, WHITE);
+	DrawText("Version: 1.0", GetScreenWidth() - 150, GetScreenHeight() - 25, 25, WHITE);
 }
 
 void Gameplay(bool& multiplayer) {
