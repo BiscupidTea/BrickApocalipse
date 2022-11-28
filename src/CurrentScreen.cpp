@@ -42,7 +42,7 @@ void CreditsScene() {
 
 void DrawMenu() {
 	DrawBackgroundGame();
-	DrawText("Moon Patrol Menu", GetScreenWidth() / 2 - (MeasureText("Moon Patrol Menu", 50)) / 2, GetScreenHeight() / 4 - 50, 50, WHITE);
+	DrawText("BirckApocalipse", GetScreenWidth() / 2 - (MeasureText("BirckApocalipse", 50)) / 2, GetScreenHeight() / 4 - 50, 50, WHITE);
 	DrawRectangle(GetScreenWidth() / 2 - (MeasureText("Singleplayer", 40)) / 2, GetScreenHeight() / 100 * 40, (MeasureText("Singleplayer", 40)), 60, GREEN);
 	DrawRectangle(GetScreenWidth() / 2 - (MeasureText("Multiplayer", 40)) / 2, GetScreenHeight() / 100 * 50, (MeasureText("Multiplayer", 40)), 60, GREEN);
 	DrawRectangle(GetScreenWidth() / 2 - (MeasureText("Rules", 40)) / 2, GetScreenHeight() / 100 * 60, (MeasureText("Rules", 40)), 60, GREEN);
@@ -122,7 +122,7 @@ void CheckInputMenu(bool& multiplayer)
 void DrawCredits() {
 	DrawBackgroundGame();
 	DrawRectangle(100, 100, 800, 600, BLACK);
-	DrawText("Moon Patrol Credits",
+	DrawText("Credits",
 		GetScreenWidth() / 2 - (MeasureText("Moon Patrol Credits", 50) / 2),
 		GetScreenHeight() / 2 - 200, 50, WHITE);
 
