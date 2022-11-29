@@ -1,8 +1,8 @@
-# MoonPatrol 0.3
-## Juego remake hecho por Manuel D`Antuono basado en el juego original Moon Patrol de Irem en 1982.
+# BrickApocalipse 1.0
+## Juego remake hecho por Manuel D`Antuono y Enzo Coletta basado en el juego original Moon Patrol de Irem en 1982.
 
 
-### Version 0.3 Lanzada!!. Ahora puedes disparar!
+### Version 1.0 Lanzada!!. Ahora puedes disparar!
 
 
 ### Nuevo enemigo aereo y sistema de puntaje al esquivar y disparar al enemigo.
