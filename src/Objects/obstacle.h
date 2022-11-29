@@ -1,6 +1,7 @@
 #pragma once
-#include "timer.h"
-#include "assets.h"
+#include "tools/timer.h"
+#include "tools/assets.h"
+#include "objects/score.h"
 
 #include "raylib.h"
 

@@ -1,43 +1,10 @@
-#include "currentScreen.h"
-#include "score.h"
+#include "Menu.h"
 
-void ScreenScene(bool& IsRunning, bool& multiplayer) {
-	switch (gamescene)
-	{
-	case GameScene::Menu:
-		SetExitKey(KEY_ESCAPE);
-		MenuScene(multiplayer);
-		break;
-	case GameScene::GameLoop:
-		SetExitKey(NULL);
-		Gameplay(multiplayer);
-		break;
-	case GameScene::Rules:
-		SetExitKey(NULL);
-		DrawRules();
-		break;
-	case GameScene::Credits:
-		SetExitKey(NULL);
-		CreditsScene();
-		break;
-	case GameScene::Exit:
-		IsRunning = false;
-		break;
-	default:
-		break;
-	}
-}
 void MenuScene(bool& multiplayer) {
 	BeginDrawing();
 	DrawMenu();
 	EndDrawing();
 	CheckInputMenu(multiplayer);
-}
-
-void CreditsScene() {
-	BeginDrawing();
-	DrawCredits();
-	EndDrawing();
 }
 
 void DrawMenu() {
@@ -56,20 +23,6 @@ void DrawMenu() {
 	DrawText("Exit", GetScreenWidth() / 2 - (MeasureText("Exit", 40)) / 2, GetScreenHeight() / 100 * 80, 40, WHITE);
 
 	VersionGame();
-}
-
-void CheckDefeat(bool isDefeat1) {
-	if (!isDefeat1)
-	{
-		gamescene = GameScene::Menu;
-	}
-}
-
-void CheckDefeatM(bool isDefeat1, bool isDefeat2) {
-	if (!isDefeat1 || !isDefeat2)
-	{
-		gamescene = GameScene::Menu;
-	}
 }
 
 void CheckInputMenu(bool& multiplayer)
@@ -117,63 +70,4 @@ void CheckInputMenu(bool& multiplayer)
 			gamescene = GameScene::Exit;
 		}
 	}
-}
-
-void DrawCredits() {
-	DrawBackgroundGame();
-	DrawRectangle(100, 100, 800, 600, BLACK);
-	DrawText("Credits",
-		GetScreenWidth() / 2 - (MeasureText("Moon Patrol Credits", 50) / 2),
-		GetScreenHeight() / 2 - 200, 50, WHITE);
-
-	DrawText("Hecho por Manuel Dantuono y Enzo Coletta",
-		GetScreenWidth() / 2 - (MeasureText("Hecho por Manuel Dantuono y Enzo Coletta", 20) / 2),
-		GetScreenHeight() / 2 - 50, 20, WHITE);
-
-	DrawText("Creado con Raylib por Ray",
-		GetScreenWidth() / 2 - (MeasureText("Creado con Raylib por Ray", 20) / 2),
-		GetScreenHeight() / 2, 20, WHITE);
-
-	DrawText("(Espacio) para volver al Menu",
-		GetScreenWidth() / 2 - (MeasureText("(Espacio) para volver al Menu", 20) / 2),
-		GetScreenHeight() / 2 + 150, 20, WHITE);
-
-	if (IsKeyPressed(KEY_SPACE))
-	{
-		gamescene = GameScene::Menu;
-	}
-	VersionGame();
-}
-
-void DrawRules()
-{
-	BeginDrawing();
-	DrawBackgroundGame();
-	DrawRectangle(100, 100, 800, 600, BLACK);
-	DrawText("W A S D = Player 1 move                   F = shoot",
-		GetScreenWidth() / 2 - (MeasureText("W A S D = Player 1 move                   F = shoot", 20) / 2),
-		GetScreenHeight() / 2 -100 , 20, WHITE);
-
-	DrawText("Key UP, Key DOWN, <- -> = Player 2 move        L = shoot",
-		GetScreenWidth() / 2 - (MeasureText(" |, v, <- -> = Player 2 move        L = shoot", 20) / 2),
-		GetScreenHeight() / 2 -50, 20, WHITE);
-
-	DrawText("Todos los jugadores deben pasar el obstaculo para dar 1 punto",
-		GetScreenWidth() / 2 - (MeasureText("Todos los jugadores deben pasar el obstaculo para dar 1 punto", 20) / 2),
-		GetScreenHeight() / 2 , 20, WHITE);
-
-	DrawText("Destruir 1 enemigo volador da 3 puntos",
-		GetScreenWidth() / 2 - (MeasureText("Destruir 1 enemigo volador da 3 puntos", 20) / 2),
-		GetScreenHeight() / 2 + 50, 20, WHITE);
-
-	DrawText("(Espacio) para volver al Menu",
-		GetScreenWidth() / 2 - (MeasureText("(Espacio) para volver al Menu", 20) / 2),
-		GetScreenHeight() / 2 +100, 20, WHITE);
-
-	if (IsKeyPressed(KEY_SPACE))
-	{
-		gamescene = GameScene::Menu;
-	}
-	VersionGame();
-	EndDrawing();
 }

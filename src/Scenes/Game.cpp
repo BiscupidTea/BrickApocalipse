@@ -1,11 +1,4 @@
 #include "game.h"
-#include "player.h"
-#include "obstacle.h"
-#include "currentScreen.h"
-#include "assets.h"
-#include "score.h"
-
-#include "raylib.h"
 
 int screenWidth = 1024;
 int screenHeight = 768;
@@ -141,4 +134,18 @@ void RestartGameplay() {
 
 float GetMovementPlayer() {
 	return player1->GetXVelocity();
+}
+
+void CheckDefeat(bool isDefeat1) {
+	if (!isDefeat1)
+	{
+		gamescene = GameScene::Menu;
+	}
+}
+
+void CheckDefeatM(bool isDefeat1, bool isDefeat2) {
+	if (!isDefeat1 || !isDefeat2)
+	{
+		gamescene = GameScene::Menu;
+	}
 }

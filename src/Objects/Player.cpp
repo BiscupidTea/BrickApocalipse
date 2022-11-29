@@ -1,10 +1,5 @@
 #include "player.h"
 
-#include "raylib.h"
-
-#include <iostream>
-using namespace std;
-
 Player::Player(float x, float y, float velocityX, float velocityY, float gravity, float width, float height, Color color) {
 	this->colision.x = x;
 	this->colision.y = y;

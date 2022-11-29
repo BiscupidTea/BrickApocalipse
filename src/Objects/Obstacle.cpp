@@ -1,5 +1,4 @@
 #include "obstacle.h"
-#include "score.h"
 
 Obstacle::Obstacle(float x, float y, float velocity, float width, float height) {
 	this->colision.x = x;

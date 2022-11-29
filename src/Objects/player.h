@@ -1,8 +1,9 @@
 #pragma once
-#include "timer.h"
+#include "raylib.h"
+
 #include "obstacle.h"
 #include "shoot.h"
-#include "assets.h"
+#include "tools/timer.h"
 
 class Player {
 private:
