@@ -4,8 +4,8 @@
 
 ### Version 1.0 Lanzada!!.
 
-![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/screenshots/vs0.3img1.png)
-![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/screenshots/vs0.3img2.png)
+![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/screenshots/c1.png)
+![img](https://github.com/ManuelDant/MoonPatrol/blob/main/Moon_Patrol_Dantuono/screenshots/c2.png)
 
 ## Autor
 
